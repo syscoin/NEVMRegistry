@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Hardhat build files
+cache/
+artifacts/
+
+# JSON files with sensitive data or deployments
+deployments_*.json
+
+# Environment variables
+.env
+
+# Coverage reports
+coverage/
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Mac system files
+.DS_Store

@@ -1,0 +1,18 @@
+{
+  "name": "nevm-registry",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy:tanenbaum": "npx hardhat run scripts/deploy.js --network tanenbaum",
+    "deploy:mainnet": "npx hardhat run scripts/deploy.js --network mainnet",
+    "deploy:local": "npx hardhat run scripts/deploy.js --network development",
+    "verify:tanenbaum": "npx hardhat verify --network tanenbaum $(jq -r .address deployments_tanenbaum.json)",
+    "verify:mainnet": "npx hardhat verify --network mainnet $(jq -r .address deployments_mainnet.json)"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-verify": "^2.0.13"
+  }
+}
