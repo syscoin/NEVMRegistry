@@ -2,17 +2,16 @@
   "name": "nevm-registry",
   "version": "1.0.0",
   "scripts": {
-    "deploy:tanenbaum": "npx hardhat run scripts/deploy.js --network tanenbaum",
-    "deploy:mainnet": "npx hardhat run scripts/deploy.js --network mainnet",
-    "deploy:local": "npx hardhat run scripts/deploy.js --network development",
-    "verify:tanenbaum": "npx hardhat verify --network tanenbaum $(jq -r .address deployments_tanenbaum.json)",
-    "verify:mainnet": "npx hardhat verify --network mainnet $(jq -r .address deployments_mainnet.json)"
+    "build": "forge build",
+      "deploy:tanenbaum": "./scripts/deploy.sh https://rpc.tanenbaum.io tanenbaum",
+      "verify:tanenbaum": "forge verify-contract --chain-id 5700 --verifier sourcify $(jq -r '.address' deployments_tanenbaum.json) contracts/NEVMRegistry.sol:NEVMRegistry && forge verify-contract --verifier blockscout --verifier-url https://explorer.tanenbaum.io/api --chain-id 5700 $(jq -r '.address' deployments_tanenbaum.json) contracts/NEVMRegistry.sol:NEVMRegistry",
+
+      "deploy:mainnet": "./scripts/deploy.sh https://rpc.syscoin.org mainnet",
+      "verify:mainnet": "forge verify-contract --chain-id 57 --verifier sourcify $(jq -r '.address' deployments_mainnet.json) contracts/NEVMRegistry.sol:NEVMRegistry && forge verify-contract --verifier blockscout --verifier-url https://explorer.syscoin.org/api --chain-id 57 $(jq -r '.address' deployments_mainnet.json) contracts/NEVMRegistry.sol:NEVMRegistry",
+
+      "deploy:local": "./scripts/deploy.sh http://localhost:8545 local"
   },
   "dependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "dotenv": "^16.4.5"
-  },
-  "devDependencies": {
-    "@nomicfoundation/hardhat-verify": "^2.0.13"
   }
 }

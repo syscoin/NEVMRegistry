@@ -14,51 +14,46 @@ The primary function is:
 function getCollateralHeight(address node) external view returns (uint256 collateralHeight);
 ```
 
-## Setup
+## Setup (Foundry)
 
-### Install dependencies
+### Install Foundry
 
 ```bash
-npm install
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
 ```
 
-### Configuration
+## Deployment and Verification Scripts
 
-Update your seed phrase directly in the `hardhat.config.js`:
+### Usage
 
-```javascript
-const MNEMONIC = "your twelve word seed phrase here";
-```
-
-## Deployment
-
-Deploy to your desired network:
+Deploy and verify on Tanenbaum:
 
 ```bash
 npm run deploy:tanenbaum
-npm run deploy:mainnet
-npm run deploy:local
+npm run verify:tanenbaum
 ```
 
-The deployment script automatically saves the contract address into a `deployments_<network>.json` file.
-
-## Verification
-
-Automatically verify the deployed contract on Sourcify:
+Deploy and verify on Mainnet:
 
 ```bash
-npm run verify:tanenbaum
+npm run deploy:mainnet
 npm run verify:mainnet
 ```
 
-The verification script automatically retrieves the deployed contract's address from the saved JSON file.
+Deploy and verify locally:
+
+```bash
+npm run deploy:local
+npm run verify:local
+```
 
 ## Networks
 
 Configured networks include:
-- `tanenbaum` (Syscoin test network)
-- `mainnet` (Syscoin mainnet)
-- `development` (Local development network)
+- `tanenbaum` (Syscoin test network, chainId: 5700)
+- `mainnet` (Syscoin mainnet, chainId: 57)
+- `local` (Local development, chainId: 1337)
 
 ## License
 

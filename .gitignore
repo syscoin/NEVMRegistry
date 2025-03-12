@@ -5,9 +5,10 @@ node_modules/
 logs
 *.log
 
-# Hardhat build files
+# build files
 cache/
 artifacts/
+out/
 
 # JSON files with sensitive data or deployments
 deployments_*.json
@@ -24,3 +25,6 @@ coverage/
 
 # Mac system files
 .DS_Store
+
+.mnemonic
+
