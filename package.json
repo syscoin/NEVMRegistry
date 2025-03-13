@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "build": "forge build",
-      "deploy:tanenbaum": "./scripts/deploy.sh https://rpc.tanenbaum.io tanenbaum",
-      "verify:tanenbaum": "forge verify-contract --chain-id 5700 --verifier sourcify $(jq -r '.address' deployments_tanenbaum.json) contracts/NEVMRegistry.sol:NEVMRegistry && forge verify-contract --verifier blockscout --verifier-url https://explorer.tanenbaum.io/api --chain-id 5700 $(jq -r '.address' deployments_tanenbaum.json) contracts/NEVMRegistry.sol:NEVMRegistry",
-
-      "deploy:mainnet": "./scripts/deploy.sh https://rpc.syscoin.org mainnet",
-      "verify:mainnet": "forge verify-contract --chain-id 57 --verifier sourcify $(jq -r '.address' deployments_mainnet.json) contracts/NEVMRegistry.sol:NEVMRegistry && forge verify-contract --verifier blockscout --verifier-url https://explorer.syscoin.org/api --chain-id 57 $(jq -r '.address' deployments_mainnet.json) contracts/NEVMRegistry.sol:NEVMRegistry",
-
-      "deploy:local": "./scripts/deploy.sh http://localhost:8545 local"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5"
+    "deploy:tanenbaum": "./scripts/deploy.sh https://rpc.tanenbaum.io tanenbaum",
+    "verify:tanenbaum": "forge verify-contract --chain-id 5700 --verifier sourcify $(jq -r '.address' deployments_tanenbaum.json) contracts/NEVMRegistry.sol:NEVMRegistry",
+    "deploy:mainnet": "./scripts/deploy.sh https://rpc.syscoin.org mainnet",
+    "verify:mainnet": "forge verify-contract --chain-id 57 --verifier sourcify $(jq -r '.address' deployments_mainnet.json) contracts/NEVMRegistry.sol:NEVMRegistry",
+    "deploy:local": "./scripts/deploy.sh http://localhost:8545 local",
+    "call:local": "./scripts/call.sh http://localhost:8545 local",
+    "call:tanenbaum": "./scripts/call.sh https://rpc.tanenbaum.io tanenbaum",
+    "call:mainnet": "./scripts/call.sh https://rpc.syscoin.org mainnet"
   }
 }

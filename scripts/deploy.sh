@@ -3,15 +3,19 @@
 RPC_URL=$1
 NETWORK=$2
 
-# Clean and rebuild before deployment
-forge clean && forge build
-
-# Deploy contract using Forge, capture deployment address
 forge create \
   --rpc-url "$RPC_URL" \
   --mnemonic-path .mnemonic \
   --json \
+  --legacy \
+  --broadcast \
   contracts/NEVMRegistry.sol:NEVMRegistry | \
-jq '{address: .deployedTo, network: "'$NETWORK'"}' > deployments_${NETWORK}.json
+jq '{contract: "NEVMRegistry", address: .deployedTo, txHash: .transactionHash, network: "'$NETWORK'"}' > deployments_${NETWORK}.json
 
-echo "Contract deployed and saved to deployments_${NETWORK}.json"
+ADDRESS=$(jq -r '.address' deployments_${NETWORK}.json)
+
+if [ "$ADDRESS" = "null" ]; then
+  echo "Deployment failed! Check RPC URL and mnemonic."
+else
+  echo "Contract deployed at $ADDRESS and saved to deployments_${NETWORK}.json"
+fi
