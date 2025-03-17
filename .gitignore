@@ -10,8 +10,6 @@ cache/
 artifacts/
 out/
 
-# JSON files with sensitive data or deployments
-deployments_*.json
 
 # Environment variables
 .env
